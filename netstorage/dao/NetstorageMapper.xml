@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.qhit.netstorage.dao.INetstorageDao"> 
+	<!-- 自定义结果集 --> 
+	<resultMap id="BaseResultMap" type="com.qhit.netstorage.pojo.Netstorage"> 
+		<id property="fileid" column="fileid" javaType="java.lang.Integer"></id> 
+		<result property="filename" column="filename" javaType="java.lang.String"></result> 
+		<result property="filesize" column="filesize" javaType="java.lang.Integer"></result> 
+		<result property="uploaddate" column="uploaddate" javaType="java.lang.String"></result> 
+		<result property="uid" column="uid" javaType="java.lang.Integer"></result> 
+	</resultMap> 
+ 
+	<!-- 在各种标签中，id属性必须与接口中的方法名一样，id的值必须是唯一的，parameterType指查询时使用的参数类型， 
+	resultType属性指明查询返回的结果集类型    --> 
+ 
+	<sql id="Base_Column_List" > 
+		fileid,filename,filesize,uploaddate,uid 
+	</sql> 
+	<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from netstorage 
+		where fileid = #{fileid,jdbcType=INTEGER} 
+	</select> 
+	<delete id="delete" parameterType="java.lang.Integer" > 
+		delete from netstorage 
+		where fileid = #{fileid,jdbcType=INTEGER} 
+	</delete> 
+	<insert id="insert" parameterType="com.qhit.netstorage.pojo.Netstorage" > 
+		insert into netstorage(filename,filesize,uploaddate,uid) 
+		values (#{filename,jdbcType=VARCHAR},#{filesize,jdbcType=INTEGER},#{uploaddate,jdbcType=DATE},#{uid,jdbcType=INTEGER}) 
+	</insert> 
+	<update id="updateSelective" parameterType="com.qhit.netstorage.pojo.Netstorage" > 
+		update netstorage 
+		<set > 
+			<if test="filename != null" > 
+				filename = #{filename,jdbcType=VARCHAR}, 
+			</if> 
+			<if test="filesize != null" > 
+				filesize = #{filesize,jdbcType=INTEGER}, 
+			</if> 
+			<if test="uploaddate != null" > 
+				uploaddate = #{uploaddate,jdbcType=DATE}, 
+			</if> 
+			<if test="uid != null" > 
+				uid = #{uid,jdbcType=INTEGER}, 
+			</if> 
+		</set> 
+		where fileid = #{fileid,jdbcType=INTEGER} 
+	</update> 
+	<update id="update" parameterType="com.qhit.netstorage.pojo.Netstorage" > 
+		update netstorage 
+		set  filename = #{filename,jdbcType=VARCHAR}, filesize = #{filesize,jdbcType=INTEGER}, uploaddate = #{uploaddate,jdbcType=DATE}, uid = #{uid,jdbcType=INTEGER} 
+		where fileid = #{fileid,jdbcType=INTEGER} 
+	</update> 
+	<select id="findAll" resultMap="BaseResultMap" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from netstorage 
+	</select> 
+	<select id="findByFilename" resultMap="BaseResultMap" parameterType="java.lang.String" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from netstorage 
+		where filename = #{filename,jdbcType=VARCHAR} 
+	</select> 
+	<select id="findByFilesize" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from netstorage 
+		where filesize = #{filesize,jdbcType=INTEGER} 
+	</select> 
+	<select id="findByUploaddate" resultMap="BaseResultMap" parameterType="java.lang.String" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from netstorage 
+		where uploaddate = #{uploaddate,jdbcType=DATE} 
+	</select> 
+	<select id="findByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer" > 
+		select 
+		<include refid="Base_Column_List" /> 
+		from netstorage 
+		where uid = #{uid,jdbcType=INTEGER} 
+	</select> 
+</mapper> 
