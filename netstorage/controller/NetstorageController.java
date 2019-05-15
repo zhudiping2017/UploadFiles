@@ -21,9 +21,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-/** 
-* Created by GeneratorCode on 2018/12/20
-*/ 
+
 
 @Controller 
 @RequestMapping("/netstorage") 
