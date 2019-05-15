@@ -3,9 +3,6 @@ package com.qhit.netstorage.dao;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-/**
-* Created by GeneratorCode on 2018/12/20
-*/
 
 @Repository  
 public interface INetstorageDao {
