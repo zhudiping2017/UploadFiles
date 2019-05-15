@@ -2,9 +2,7 @@ package com.qhit.netstorage.service;
 
 import java.util.List;
 import com.qhit.netstorage.pojo.Netstorage;
-/**
-* Created by GeneratorCode on 2018/12/20
-*/
+
 
 public interface INetstorageService {
 
