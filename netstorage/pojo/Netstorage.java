@@ -1,10 +1,6 @@
 package com.qhit.netstorage.pojo;
 
 
-/**
-* Created by GeneratorCode on 2018/12/20
-*/
-
 public class Netstorage {
 
     private Integer fileid;    //主键
