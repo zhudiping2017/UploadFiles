@@ -7,9 +7,7 @@ import com.qhit.netstorage.pojo.Netstorage;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource; 
 
-/**
-* Created by GeneratorCode on 2018/12/20
-*/
+
 
 @Service 
 public class NetstorageServiceImpl  implements INetstorageService {
